@@ -5,14 +5,13 @@ import { signin } from "../actions/userActions";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
 
-function SignInScreen(props) {
+function SignInScreen() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const userSignin = useSelector((state) => state.userSignin);
-  const { userInfo,loading,error } = userSignin;
-
+  const { userInfo, loading, error } = userSignin;
   const { search } = useLocation();
   const redirect = search ? search.split("=")[1] : "/";
 
@@ -22,6 +21,7 @@ function SignInScreen(props) {
   };
 
   useEffect(() => {
+    console.log(redirect)
     if (userInfo) {
       navigate(redirect);
     }

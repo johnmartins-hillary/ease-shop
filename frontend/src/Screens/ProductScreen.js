@@ -8,7 +8,7 @@ import { detailsProduct } from "../actions/productsActions";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-function ProductScreen(props) {
+function ProductScreen() {
   const dispatch = useDispatch();
   const params = useParams();
   const productId = params.id;
@@ -24,8 +24,6 @@ function ProductScreen(props) {
     navigate(`/cart/${productId}?qty=${qty}`);
   };
 
-
-
   return (
     <div>
       {loading ? (
@@ -37,7 +35,11 @@ function ProductScreen(props) {
           <div className="row top">
             <NavLink to="/">Return to results</NavLink>
             <div className="col-2">
-              <img src={product.data.image} alt={product.data.name} className="large" />
+              <img
+                src={product.data.image}
+                alt={product.data.name}
+                className="large"
+              />
             </div>
             <div className="col-1">
               <ul>
@@ -88,13 +90,11 @@ function ProductScreen(props) {
                               value={qty}
                               onChange={(e) => setQty(e.target.value)}
                             >
-                              {[...Array(product.data.countInStock).keys()].map(
-                                (x) => (
-                                  <option key={x + 1} value={x + 1}>
-                                    {x + 1}
-                                  </option>
-                                )
-                              )}
+                              {[...Array(product.data.countInStock).keys()].map((x) => (
+                                <option value={x + 1} key={x + 1}>
+                                  {x + 1}
+                                </option>
+                              ))}
                             </select>
                           </div>
                         </div>

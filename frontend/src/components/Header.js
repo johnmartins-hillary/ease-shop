@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { BsCart4 } from "react-icons/bs";
 import { useDispatch } from "react-redux";
@@ -9,10 +9,11 @@ export default function Header({ cartItems, userSignin }) {
   const { userInfo } = userSignin;
   const dispatch = useDispatch();
 
-
   const signoutHandler = () => {
     dispatch(signout());
   };
+
+
   return (
     <header className="row">
       <div>
@@ -37,7 +38,13 @@ export default function Header({ cartItems, userSignin }) {
               {""}
             </Link>
             <ul className="dropdown-content">
-              <Link to="#signout" onClick={signoutHandler}>
+              <li>
+                <Link to="/profile">User Profile</Link>
+              </li>
+              <li>
+                <Link to="/orderhistory">Order History</Link>
+              </li>
+              <Link to="/" onClick={signoutHandler}>
                 Sign Out
               </Link>
             </ul>

@@ -5,9 +5,9 @@ import mongoose from "mongoose";
 import routers from "./Routers/routers.js";
 import userRouter from "./Routers/userRouter.js";
 import productRouter from "./Routers/productRouter.js";
+import orderRouter from "./Routers/orderRouter.js";
 
 dotenv.config();
-
 //app config
 const app = express();
 const port = process.env.PORT || 9000;
@@ -31,7 +31,9 @@ app.use((err, req, res, next) => {
 //routers
 app.use("/api/users", userRouter);
 app.use("/api/products", productRouter);
-app.use(routers);
-app.listen(port, () => {
-  console.log(`server at http://localhost:${port}`);
+app.use("/api/orders", orderRouter);
+app.get("/api/config/paypal", (req, res) => {
+  res.send(process.env.PAYPAL_CLIENT_ID || "sb");
 });
+app.use(routers);
+app.listen(port, () => {});

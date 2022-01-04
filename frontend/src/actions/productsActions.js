@@ -16,7 +16,6 @@ export const listProducts = () => async (dispatch) => {
   await Axios.get("http://localhost:9000/api/products")
     .then((response) => {
       dispatch({ type: PRODUCT_LIST_SUCCESS, payload: response.data });
-    console.log(response);
     })
     .catch((err) => {
       dispatch({ type: PRODUCT_LIST_FAIL, payloada: err.message });

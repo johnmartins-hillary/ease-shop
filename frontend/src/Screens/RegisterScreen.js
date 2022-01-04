@@ -14,7 +14,6 @@ function RegisterScreen(props) {
   const navigate = useNavigate();
   const userRegister = useSelector((state) => state.userRegister);
   const { userInfo, loading, error } = userRegister;
-
   const { search } = useLocation();
   const redirect = search ? search.split("=")[1] : "/";
 

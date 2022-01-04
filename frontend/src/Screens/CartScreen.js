@@ -14,6 +14,8 @@ function CartScreen(props) {
   const qty = search ? Number(search.split("=")[1]) : 1;
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
+  const userSignin = useSelector((state) => state.userSignin);
+  const { userInfo } = userSignin;
 
   useEffect(() => {
     if (productId) {
@@ -24,8 +26,14 @@ function CartScreen(props) {
   const removeFromCartHandler = (id) => {
     dispatch(removeFromCart(id));
   };
-  const checkoutHandler = (id) => {
-    navigate("/signin?redirect=shipping");
+  const checkoutHandler = () => {
+    if(!userInfo ){
+     navigate("/signin?redirect=shipping");
+  }
+  else{
+    navigate("/shipping")
+  }
+   
   };
   return (
     <div className="row top">
